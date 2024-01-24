@@ -36,9 +36,9 @@ def measure(req_func,req_multiplier,repeated):
     func_total_time_ms = 0
     # Definē 'data' sarakstu, ar sākuma datiem un formatēšanu.
     data = [
-        ["Datums","Laiks", "Atkartotas reizes"],
+        ["Datums","Laiks", "Atkartotas reizes", "Python versija"],
         # Ievada šobrīdējo datumu, laiku un saglabā 'repeated' mainīgo.
-        [datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated],
+        [datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,py_version],
         ["Atkartojuma nr.p.k.", "Reizinatajs", "Laiks (ms)"]
     ]
     # Cikls, kas veic mērīšanu 'repeated' reizes.
