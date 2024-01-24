@@ -7,6 +7,9 @@ from sys import version_info
 # Importē 'csv' bibleotēkas 'writer' objektu, kas ļauj veidot un rakstīt .csv tipa failus.
 from csv import writer
 
+# Importē 'csv' bibleotēkas 'reader' objektu, kas ļauj lasīt .csv tipa failus.
+# from csv import reader
+
 # Importē 'os' bibleotēkas 'makedirs' un 'path' funkciju, kas ļauj izveidot direktorijas kā arī tās formatēt.
 from os import makedirs
 from os import path
@@ -14,12 +17,8 @@ from os import path
 # Importē 'datetime' bibleotēkas 'datetime' funkcijas, kas ļauj saglabāt šobrīdējo laiku un to formatēt.
 from datetime import datetime
 
-# Izveido mainīgo 'py_version' kas saglabā izmantoto Python versiju datu saglabāšanai.
+# Izveido mainīgo 'py_version', kas saglabā izmantoto Python versiju.
 py_version = f"{version_info.major}.{version_info.minor}.{version_info.micro}"
-
-# Izveido funkciju 'relational_function' kas iesāk relāciju datubāzes meklēšanu, šobrīd, bez koda, izmēģinājumiem.
-def relational_function():
-    pass
 
 # Izveido mainīgo 'times_repeated' kas iedod ievada iespēju lietotājam lai iestatīt cik reizes atkārtot laika mērīšanu.
 times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
@@ -53,7 +52,7 @@ def measure(req_func,req_multiplier,repeated):
         func_total_time_ms = func_total_time_ms + time_taken_ms
     # Izrēķina vidējo patērēto laiku vienai funkcijas nomērīšanai un to noapaļo līdz 5-1=4 skaitļiem aiz komata.
     avg_time_ms = round(func_total_time_ms / repeated,5)
-    # Pievieno tukšu rindu 'data' sarakstam
+    # Pievieno tukšu rindu 'data' sarakstam vieglākai rezultātu nolasīšanai.
     data.append([])
     # Pievieno 'data' sarakstam kopējo funkciju laiku un vidējo funkciju laiku milisekundēs.
     data.append(['Kopejais funkciju laiks (ms)','Videjais funkciju laiks (ms)'])
@@ -79,6 +78,10 @@ def save(timestamp, info):
 
     # Izdrukā konsolē paziņojumu par saglabātajiem rezultātiem un kur tie ir saglabāti.
     print(f"Data has been saved to {file_path}")
+
+# Izveido funkciju 'relational_function' kas iesāk relāciju datubāzes meklēšanu, šobrīd, bez koda, izmēģinājumiem.
+def relational_function():
+    pass
 
 exported_data = measure(relational_function, multipilier, times_repeated)
 save(current_timestamp,exported_data)
