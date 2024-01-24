@@ -1,6 +1,9 @@
 # Importē 'timeit' bibleotēkas 'timeit' funkciju, kas ļauj izmērīt vajadzīgo laiku funkcijas izpildei.
 from timeit import timeit 
 
+# Importē 'sys' bibleotēkas 'version_info' funkciju, kas ļauj pārbaudīt izmantoto Python versiju.
+from sys import version_info
+
 # Importē 'csv' bibleotēkas 'writer' objektu, kas ļauj veidot un rakstīt .csv tipa failus.
 from csv import writer
 
@@ -10,6 +13,9 @@ from os import path
 
 # Importē 'datetime' bibleotēkas 'datetime' funkcijas, kas ļauj saglabāt šobrīdējo laiku un to formatēt.
 from datetime import datetime
+
+# Izveido mainīgo 'py_version' kas saglabā izmantoto Python versiju datu saglabāšanai.
+py_version = f"{version_info.major}.{version_info.minor}.{version_info.micro}"
 
 # Izveido funkciju 'relational_function' kas iesāk relāciju datubāzes meklēšanu, šobrīd, bez koda, izmēģinājumiem.
 def relational_function():
