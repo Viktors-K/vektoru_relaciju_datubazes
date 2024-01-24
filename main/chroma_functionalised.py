@@ -38,40 +38,47 @@ def import_data(db_file_name):
 
     # Izdrukā formatētos datus
     return (ids,names,sources)
-    
 
-imported_data = import_data('first.csv')
-imported_ids = imported_data[0]
-imported_docs = imported_data[1]
-imported_metadata = [{'source': value} for value in imported_data[2]]
+# Definē funkciju 'create_collection' ar vienu ievadu, 'db_file_name', kas pieņem string mainīgo vajadzīgā faila nosaukumam.
+def create_collection(db_file_name):
+    # Izveido 'imported_data' objektu, kurā ievadīti visi dati no 'db_file_name' faila.
+    imported_data = import_data(db_file_name)
+    # Formatē ievadītos datus no 'db_file_name' faila 'query' funkcijai.
+    imported_ids = imported_data[0]
+    imported_docs = imported_data[1]
+    imported_metadata = [{'source': value} for value in imported_data[2]]
 
-# Izveido 'chroma_client' objektu.
-chroma_client = chromadb.Client()
+    # Izveido 'chroma_client' objektu.
+    chroma_client = chromadb.Client()
 
-# Izveido 'collection' objektu, kurā tiks saglabāti iegulumi, dokumenti un citi papildus metadati. Kolekciju nosauc par "my_collection".
-collection = chroma_client.create_collection(name="my_collection")
+    # Izveido 'collection' objektu, kurā tiks saglabāti iegulumi, dokumenti un citi papildus metadati. Kolekciju nosauc par "my_collection".
+    collection = chroma_client.create_collection(name="my_collection")
 
-# Ar collection.add funkciju tiek pievienota informācija kolekcijai.
-collection.add(
-    # Tiek definēti divi dokumenti.
-    documents=imported_docs,
-    # Tiek definēti papildus metadati šiem dokumentiem, šajā gadījumā 'source' informācija.
-    metadatas=imported_metadata,
-    # Tiek definēti dokumentu ID.
-    ids=imported_ids
-)
+    # Ar collection.add funkciju tiek pievienota informācija kolekcijai.
+    collection.add(
+        # Tiek definēti divi dokumenti.
+        documents=imported_docs,
+        # Tiek definēti papildus metadati šiem dokumentiem, šajā gadījumā 'source' informācija.
+        metadatas=imported_metadata,
+        # Tiek definēti dokumentu ID.
+        ids=imported_ids
+    )
+    return collection
 
-user_query = input("Query: (stop to leave)")
-while (user_query != "stop"):
-
+# Definē funkciju 'query_vectordb' ar vienu ievadu, 'user_query', kas pieņem string mainīgo meklēšanas šķirklim.
+def query_vectordb(user_query):
     # Izveido mainīgo 'results' ar kolecijas 'query' funkciju lai meklētu datubāzē.
     results = collection.query(
         # 'query' funkcijai tiek dots meklēšanas škirklis. 
         query_texts=[user_query],
         # 'query' funkcijai tiek dots vajadzīgais rezultātu daudzums, kas vistuvāk atbilst šķirklim. 
-        n_results=4
+        n_results=1
     )
-
     # Izdrukā rezultātus no 'query' funkcijas.
-    print(results)
-    user_query = input("Query:")
+    return(results)
+
+# Izveido jaunu kolekciju 'collection' objektā.
+collection = create_collection('first.csv')
+
+# Izsauc un izdrukā kolekcijas meklēšanas pieprasījuma rezultātus.
+print(query_vectordb(input("Query:")))
