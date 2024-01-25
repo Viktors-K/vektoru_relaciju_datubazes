@@ -1,8 +1,7 @@
 # Importē 'os' bibleotēkas 'makedirs' un 'path' funkciju, kas ļauj izveidot direktorijas kā arī tās formatēt.
 from os import path
 
-
-
+# Importē 'csv' bibleotēkas 'reader' objektu, kas ļauj lasīt .csv tipa failus.
 from csv import reader
 
 def import_data(db_file_name):

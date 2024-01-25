@@ -1,5 +1,5 @@
 # Importē 'chromadb' bibleotēku, kas ļauj veidot vektordatubāzes.
-import chromadb
+from chromadb import Client
 
 # Importē 'os' bibleotēkas 'makedirs' un 'path' funkciju, kas ļauj izveidot direktorijas kā arī tās formatēt.
 from os import path
@@ -49,7 +49,7 @@ def create_collection(db_file_name):
     imported_metadata = [{'source': value} for value in imported_data[2]]
 
     # Izveido 'chroma_client' objektu.
-    chroma_client = chromadb.Client()
+    chroma_client = Client()
 
     # Izveido 'collection' objektu, kurā tiks saglabāti iegulumi, dokumenti un citi papildus metadati. Kolekciju nosauc par "my_collection".
     collection = chroma_client.create_collection(name="my_collection")
@@ -81,4 +81,4 @@ def query_vectordb(user_query):
 collection = create_collection('first.csv')
 
 # Izsauc un izdrukā kolekcijas meklēšanas pieprasījuma rezultātus.
-print(query_vectordb(input("Query:")))
+print(query_vectordb(input("Query:"))['documents'])
