@@ -50,19 +50,7 @@ def import_data(db_file_name):
         for row in csv_reader:
             db_data.append(row)
 
-    # Izveido 3 tukšus sarakstus ChromaDB formatēšanai
-    ids = []
-    names = []
-    sources = []
-
-    # Pievieno visus ID, vārdus un avotus savos sarakstos ChromaDB formatēšanai
-    for row in db_data:
-        ids.append(row[0])
-        names.append(row[1])
-        sources.append(row[2])
-
-    # Izdrukā formatētos datus
-    return (ids,names,sources)
+    return (db_data)
 
 # Izveido funkciju 'measure' ar 3 ievadiem, 'req_func', kas pieņem funkciju, ko mērīt, 'req_multiplier', kas pieņem skaitli, kuru izmantot 'timeit' funkcijas reizinātājam un 'repeated', kas pieņem skaitli, kurš nosaka cik reizes atkārtot mērījumus.
 def measure(req_func,req_multiplier,repeated):
@@ -124,10 +112,17 @@ def save(timestamp, info):
 def create_collection(db_file_name):
     # Izveido 'imported_data' objektu, kurā ievadīti visi dati no 'db_file_name' faila.
     imported_data = import_data(db_file_name)
-    # Formatē ievadītos datus no 'db_file_name' faila 'query' funkcijai.
-    imported_ids = imported_data[0]
-    imported_docs = imported_data[1]
-    imported_metadata = [{'source': value} for value in imported_data[2]]
+    # Izveido 3 tukšus sarakstus ChromaDB formatēšanai
+    imported_ids = []
+    imported_docs = []
+    imported_sources = []
+    # Pievieno visus ID, vārdus un avotus savos sarakstos ChromaDB formatēšanai
+    for row in imported_data:
+        imported_ids.append(row[0])
+        imported_docs.append(row[1])
+        imported_sources.append(row[2])
+
+    imported_metadata = [{'source': value} for value in imported_sources]
 
     # Izveido 'chroma_client' objektu.
     chroma_client = Client()
