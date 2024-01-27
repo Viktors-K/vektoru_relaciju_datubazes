@@ -31,21 +31,21 @@ def save(info):
     print(f"Data has been saved to {file_path}")
 
 ###
-def start_results(repeated,user_query, version):
+def start_results(repeated,user_query):
     
     # Definē 'data' sarakstu, ar sākuma datiem un formatēšanu.
     data = [
         # Ievada šobrīdējo datumu, laiku un saglabā 'repeated' mainīgo.
-        ["Datums","Laiks", "Atkartotas reizes", "Python versija"],
-        [datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,version]
-        
-        # Pieraksta ievadīto meklēšanas škirkli.
-        ["Ievada skirklis"],
-        [user_query],
-        
-        ###
-        ["Atkartojuma nr.p.k.", "Reizinatajs", "Laiks (ms)", "Izvads"]
-    ]
+        ["Datums","Laiks", "Atkartotas reizes", "Python versija"]]
+    # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
+    if __name__ == "__main__":
+        data.append([datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,version.py_version])
+    else:
+        data.append([datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,subscripts.version.py_version])
+    # Pieraksta ievadīto meklēšanas škirkli.
+    data.append(["Ievada skirklis"])
+    data.append([user_query])
+    data.append(["Atkartojuma nr.p.k.", "Reizinatajs", "Laiks (ms)", "Izvads"])
     ###
     return data
 
@@ -58,6 +58,11 @@ def main():
 
 # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
 if __name__ == "__main__":
+    # Importē 'version.py' failu, kas izveido mainīgo py_version ar šobrīdējo Python versiju.
+    import version
     main()
-
-
+    
+# Ja atvērts netieši, šis skripts importēs ārēji 'version' faila mainīgo.
+else:
+    # Importē 'version.py' failu, kas izveido mainīgo py_version ar šobrīdējo Python versiju.
+    import subscripts.version

@@ -1,11 +1,10 @@
 # Importē 'chromadb' bibleotēku, kas ļauj veidot vektordatubāzes.
 from chromadb import Client
 
+
+
 # Definē funkciju 'create_collection' ar vienu ievadu, 'db_file_name', kas pieņem string mainīgo vajadzīgā faila nosaukumam.
 def create_collection(db_file_name):
-
-    # Importē 'import_data' faila 'import_data' funkciju, kas importē datus no dota .csv faila nosaukuma un izvada tos sarakstā.
-    from import_data import import_data
     
     # Izveido 'imported_data' objektu, kurā ievadīti visi dati no 'db_file_name' faila.
     imported_data = import_data(db_file_name)
@@ -64,6 +63,12 @@ def main():
     # Izsauc un izdrukā kolekcijas meklēšanas pieprasījuma rezultātus.
     print(results['documents'])
 
+# Ja atvērts netieši, šis skripts importēs ārēji 'import_data' faila funkciju.
+if __name__ != "__main__":
+    # Importē 'import_data' faila 'import_data' funkciju, kas importē datus no dota .csv faila nosaukuma un izvada tos sarakstā.
+    from subscripts.import_data import import_data
+    
 # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
 if __name__ == "__main__":
+    from import_data import import_data
     main()

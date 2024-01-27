@@ -26,15 +26,9 @@ from subscripts.import_data import import_data
 ### Importē '' faila '' funkciju, kas importē datus no dota .csv faila nosaukuma un izvada tos sarakstā.
 from subscripts.save_to_csv import save,start_results
 
-
-### Importē '' faila '' funkciju, kas importē datus no dota .csv faila nosaukuma un izvada tos sarakstā.
-from subscripts.measure import measure
-
 ### Importē '' faila '' funkciju, kas importē datus no dota .csv faila nosaukuma un izvada tos sarakstā.
 from subscripts.chromadb_main import create_collection
 
-# Importē 'version.py' failu, kas izveido mainīgo py_version ar šobrīdējo Python versiju.
-import subscripts.version
 # Izveido mainīgo 'times_repeated', kas iedod ievada iespēju lietotājam lai iestatīt cik reizes atkārtot laika mērīšanu.
 times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
 
@@ -43,12 +37,46 @@ user_query = input("Query:")
 
 # Izveido tukšu sarakstu 'query_results' kurā tiks pievienoti rezultāti no katras meklēšanas funkcijas izsaukšanas.
 query_results = []
-print(subscripts.version.py_version)
+
 ###
-data = start_results(times_repeated,user_query, subscripts.version.py_version)
+data = start_results(times_repeated,user_query)
 
 # Izveido tukšu sarakstu 'query_results' kurā tiks pievienoti rezultāti no katras meklēšanas funkcijas izsaukšanas.
 query_results = []
+
+# Izveido funkciju 'measure' ar 3 ievadiem, 'req_func', kas pieņem funkciju, ko mērīt, 'repeated', kas pieņem skaitli, kurš nosaka cik reizes atkārtot mērījumus un 'data', kas pieņem iesāktu sarakstu lai tam var pievienot datus.
+def measure(req_func,repeated, data):
+    
+    # Izveido mainīgo 'func_total_time_ms' ar sākuma daudzumu 0, kurā vēlāk tiks saglabāts milisekunžu skaits kopā, kas vajadzīgs funkciju izpildei.
+    func_total_time_ms = 0
+
+    # Cikls, kas veic mērīšanu 'repeated' reizes.
+    for i in range(0,repeated):
+
+        # Izveido jaunu mainīgo 'time_taken', kas izmanto 'timeit' bibleotēkas funkciju lai izmērītu cik ilgu laiku aizņems izpildīt 1 reizi 'req_func' funkciju.
+        time_taken = timeit(req_func, number=1)
+
+        # Izveido jaunu mainīgo 'time_taken_ms', kas reizina mainīgo 'time_taken' 1000 reizes lai iegūtu rezultātu milisekundēs un to noapaļo līdz 5-1=4 skaitļiem aiz komata.
+        time_taken_ms = round(time_taken*1000, 5)
+
+        # Pievieno 'data' sarakstam atkārtojuma nr.p.k., attiecīgo reizinātāju un cik milisekundes funkcija aizņēma.
+        data.append([i+1,time_taken_ms,query_results[i]])
+
+        # Pēc katras funkcijas nomērīšanas pievieno aizņemto laiku 'func_total_time_ms' mainīgajam lai saglabātu cik laika visas funkcijas atkārtošanas reizes aizņēma.
+        func_total_time_ms = func_total_time_ms + time_taken_ms
+
+    # Izrēķina vidējo patērēto laiku vienai funkcijas nomērīšanai un to noapaļo līdz 5-1=4 skaitļiem aiz komata.
+    avg_time_ms = round(func_total_time_ms / repeated,5)
+
+    # Pievieno tukšu rindu 'data' sarakstam vieglākai rezultātu nolasīšanai.
+    data.append([])
+
+    # Pievieno 'data' sarakstam kopējo funkciju laiku un vidējo funkciju laiku milisekundēs.
+    data.append(['Kopejais funkciju laiks (ms)','Videjais funkciju laiks (ms)'])
+    data.append([func_total_time_ms,avg_time_ms])
+
+    # Izvada visus formatētos datus vēlākai rezultātu saglabāšanai saraksta objektā.
+    return data
 
 # Definē funkciju 'query_vectordb', kas izmanto 'user_query' string mainīgo meklēšanas šķirklim.
 def query_vectordb():
