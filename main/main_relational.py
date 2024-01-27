@@ -23,7 +23,7 @@ from datetime import datetime
 # Izveido mainīgo 'py_version', kas saglabā izmantoto Python versiju.
 py_version = f"{version_info.major}.{version_info.minor}.{version_info.micro}"
 
-# Izveido mainīgo 'times_repeated' kas iedod ievada iespēju lietotājam lai iestatīt cik reizes atkārtot laika mērīšanu.
+# Izveido mainīgo 'times_repeated', kas iedod ievada iespēju lietotājam lai iestatīt cik reizes atkārtot laika mērīšanu.
 times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
 
 # Izveido mainīgo 'multiplier' ar sākuma daudzumu 1, kas izmantots 'timeit' funkcijā kā reizinātājs lai noteiktu cik reizes izpildīt funkciju.
@@ -34,6 +34,7 @@ current_timestamp = datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
 
 # Definē funkciju 'import_data' ar vienu ievadu, 'db_file_name', kas pieņem string mainīgo vajadzīgā faila nosaukumam.
 def import_data(db_file_name):
+    
     # Izveido sākuma datu faila lokācijas mainīgo 'db_file_path'.
     db_file_path = path.join(path.dirname(__file__), 'data', db_file_name)
 
@@ -42,38 +43,51 @@ def import_data(db_file_name):
 
     # Atver un nolasa sākuma datu .csv failu.
     with open(db_file_path) as db_csv:
+        
         # Izveido .csv faila lasītāja objektu
         csv_reader = reader(db_csv)
+        
         # Izlaiž pirmo galvenes rindu, ja tā eksistē.
         header = next(csv_reader, None)
+        
         # Pievieno katru rindu no .csv faila 'db_data' sarakstam
         for row in csv_reader:
             db_data.append(row)
 
-    return (db_data)
+    # Izvada nolasīto informāciju no .csv faila saraksta objektā.
+    return db_data
 
 # Izveido funkciju 'measure' ar 3 ievadiem, 'req_func', kas pieņem funkciju, ko mērīt, 'req_multiplier', kas pieņem skaitli, kuru izmantot 'timeit' funkcijas reizinātājam un 'repeated', kas pieņem skaitli, kurš nosaka cik reizes atkārtot mērījumus.
 def measure(req_func,req_multiplier,repeated):
+    
     # Izveido mainīgo 'func_total_time_ms' ar sākuma daudzumu 0, kurā vēlāk tiks saglabāts milisekunžu skaits kopā, kas vajadzīgs funkciju izpildei.
     func_total_time_ms = 0
+    
     # Definē 'data' sarakstu, ar sākuma datiem un formatēšanu.
     data = [
-        ["Datums","Laiks", "Atkartotas reizes", "Python versija"],
         # Ievada šobrīdējo datumu, laiku un saglabā 'repeated' mainīgo.
+        ["Datums","Laiks", "Atkartotas reizes", "Python versija"],
         [datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,py_version],
+        
+        # Pieraksta ievadīto meklēšanas škirkli.
         ["Ievada skirklis"],
         [user_query],
+        
         ["Atkartojuma nr.p.k.", "Reizinatajs", "Laiks (ms)", "Izvads"]
     ]
 
     # Cikls, kas veic mērīšanu 'repeated' reizes.
     for i in range(0,repeated):
+
         # Izveido jaunu mainīgo 'time_taken', kas izmanto 'timeit' bibleotēkas funkciju lai izmērītu cik ilgu laiku aizņems izpildīt 'req_multiplier' reizes 'req_func' funkciju.
         time_taken = timeit(req_func, number=req_multiplier)
+
         # Izveido jaunu mainīgo 'time_taken_ms', kas reizina mainīgo 'time_taken' 1000 reizes lai iegūtu rezultātu milisekundēs un to noapaļo līdz 5-1=4 skaitļiem aiz komata.
         time_taken_ms = round(time_taken*1000, 5)
+
         # Pievieno 'data' sarakstam atkārtojuma nr.p.k., attiecīgo reizinātāju un cik milisekundes funkcija aizņēma.
         data.append([i+1,req_multiplier,time_taken_ms,query_results[i]])
+
         # Pēc katras funkcijas nomērīšanas pievieno aizņemto laiku 'func_total_time_ms' mainīgajam lai saglabātu cik laika visas funkcijas atkārtošanas reizes aizņēma.
         func_total_time_ms = func_total_time_ms + time_taken_ms
 
@@ -86,6 +100,8 @@ def measure(req_func,req_multiplier,repeated):
     # Pievieno 'data' sarakstam kopējo funkciju laiku un vidējo funkciju laiku milisekundēs.
     data.append(['Kopejais funkciju laiks (ms)','Videjais funkciju laiks (ms)'])
     data.append([func_total_time_ms,avg_time_ms])
+
+    # Izvada visus formatētos datus vēlākai rezultātu saglabāšanai saraksta objektā.
     return data
 
 # Izveido funkciju 'save' ar 2 ievadiem, 'timestamp', kas pieņem string mainīgo laika posma saglabāšanai, kā arī 'info', kas pieņem sarakstu .csv faila izveidei un saglabāšanai.
@@ -110,18 +126,22 @@ def save(timestamp, info):
 
 # Definē funkciju 'create_collection' ar vienu ievadu, 'db_file_name', kas pieņem string mainīgo vajadzīgā faila nosaukumam.
 def create_collection(db_file_name):
+    
     # Izveido 'imported_data' objektu, kurā ievadīti visi dati no 'db_file_name' faila.
     imported_data = import_data(db_file_name)
+    
     # Izveido 3 tukšus sarakstus ChromaDB formatēšanai
     imported_ids = []
     imported_docs = []
     imported_sources = []
+   
     # Pievieno visus ID, vārdus un avotus savos sarakstos ChromaDB formatēšanai
     for row in imported_data:
         imported_ids.append(row[0])
         imported_docs.append(row[1])
         imported_sources.append(row[2])
 
+    # Pārveido importēto 'source' informāciju vārdnīcā ChromaDB formatēšanai
     imported_metadata = [{'source': value} for value in imported_sources]
 
     # Izveido 'chroma_client' objektu.
@@ -139,21 +159,29 @@ def create_collection(db_file_name):
         # Tiek definēti dokumentu ID.
         ids=imported_ids
     )
+
+    # Izvada izveidoto kolekciju ar datiem ChromaDB kolekcijas objektā.
     return collection
 
+# Izveido mainīgo 'user_query', kas iedod ievada iespēju lietotājam lai iestatīt meklēšanas šķirkli.
 user_query = input("Query:")
 
+# Izveido tukšu sarakstu 'query_results' kurā tiks pievienoti rezultāti no katras meklēšanas funkcijas izsaukšanas.
 query_results = []
 
 # Definē funkciju 'query_vectordb', kas izmanto 'user_query' string mainīgo meklēšanas šķirklim.
 def query_vectordb():
+    
     # Izveido mainīgo 'results' ar kolecijas 'query' funkciju lai meklētu datubāzē.
     results = collection.query(
+        
         # 'query' funkcijai tiek dots meklēšanas škirklis. 
         query_texts=[user_query],
+        
         # 'query' funkcijai tiek dots vajadzīgais rezultātu daudzums, kas vistuvāk atbilst šķirklim. 
         n_results=1
     )
+    
     # Izdrukā rezultātus no 'query' funkcijas.
     doc = str(results['documents'])
     query_results.append(doc[3:-3])
