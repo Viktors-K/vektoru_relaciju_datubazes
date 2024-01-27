@@ -54,4 +54,4 @@ def create_db_from_csv(csv_file, db_file):
     conn.commit()
     conn.close()
 
-create_db_from_csv('first.csv', 'data/example2.db')
+create_db_from_csv('first.csv', 'data/sql.db')
