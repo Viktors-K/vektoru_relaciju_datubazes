@@ -33,3 +33,5 @@ with open(file_path, mode='w', newline='') as file:
 
 # Izdrukā konsolē paziņojumu par saglabātajiem rezultātiem un kur tie ir saglabāti.
 print(f"Data has been saved to {file_path}")
+
+

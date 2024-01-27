@@ -41,8 +41,10 @@ def import_data(db_file_name):
 
 # Definē funkciju 'create_collection' ar vienu ievadu, 'db_file_name', kas pieņem string mainīgo vajadzīgā faila nosaukumam.
 def create_collection(db_file_name):
+    
     # Izveido 'imported_data' objektu, kurā ievadīti visi dati no 'db_file_name' faila.
     imported_data = import_data(db_file_name)
+    
     # Formatē ievadītos datus no 'db_file_name' faila 'query' funkcijai.
     imported_ids = imported_data[0]
     imported_docs = imported_data[1]
@@ -67,14 +69,18 @@ def create_collection(db_file_name):
 
 # Definē funkciju 'query_vectordb' ar vienu ievadu, 'user_query', kas pieņem string mainīgo meklēšanas šķirklim.
 def query_vectordb(user_query):
+    
     # Izveido mainīgo 'results' ar kolecijas 'query' funkciju lai meklētu datubāzē.
     results = collection.query(
+        
         # 'query' funkcijai tiek dots meklēšanas škirklis. 
         query_texts=[user_query],
+        
         # 'query' funkcijai tiek dots vajadzīgais rezultātu daudzums, kas vistuvāk atbilst šķirklim. 
         n_results=1
     )
-    # Izdrukā rezultātus no 'query' funkcijas.
+    
+    # Izvada rezultātus no 'query' funkcijas.
     return(results)
 
 # Izveido jaunu kolekciju 'collection' objektā.
