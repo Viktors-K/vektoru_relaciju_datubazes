@@ -1,11 +1,16 @@
 # Importē 'timeit' bibleotēkas 'timeit' funkciju, kas ļauj izmērīt vajadzīgo laiku funkcijas izpildei.
 from timeit import timeit 
 
+# Importē 'sqlite3' bibleotēkas 'connect' funkciju, kas ļauj savienoties ar .db failu.
+from sqlite3 import connect
+
 # Importē 'save_to_csv' faila 'save' funkciju, kas saglabā izveidotos datus .csv failā, un funkciju 'start_results', kas pievieno datiem sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
 from subscripts.save_to_csv import save,start_results
 
-# Importē 'chromadb_main' faila 'create_collection' funkciju, kas izveido kolekcijas objektā vektordatubāzi.
-from subscripts.chromadb_main import create_collection
+### Importē 'save_to_csv' faila 'save' funkciju, kas saglabā izveidotos datus .csv failā, un funkciju 'start_results', kas pievieno datiem sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
+from subscripts.import_sql import create_db_from_csv
+
+create_db_from_csv('first.csv', 'data/sql.db')
 
 # Izveido mainīgo 'times_repeated', kas iedod ievada iespēju lietotājam lai iestatīt cik reizes atkārtot laika mērīšanu.
 times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
@@ -13,11 +18,11 @@ times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
 # Izveido mainīgo 'user_query', kas iedod ievada iespēju lietotājam lai iestatīt meklēšanas šķirkli.
 user_query = input("Query:")
 
-# Izveido jaunu sarakstu 'data' ar sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
-data = start_results(times_repeated,user_query, 'vector')
-
 # Izveido tukšu sarakstu 'query_results' kurā tiks pievienoti rezultāti no katras meklēšanas funkcijas izsaukšanas.
 query_results = []
+
+# Izveido jaunu sarakstu 'data' ar sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
+data = start_results(times_repeated,user_query, 'relational')
 
 # Izveido funkciju 'measure' ar 3 ievadiem, 'req_func', kas pieņem funkciju, ko mērīt, 'repeated', kas pieņem skaitli, kurš nosaka cik reizes atkārtot mērījumus un 'data', kas pieņem iesāktu sarakstu lai tam var pievienot datus.
 def measure(req_func,repeated, data):
@@ -53,28 +58,47 @@ def measure(req_func,repeated, data):
     # Izvada visus formatētos datus vēlākai rezultātu saglabāšanai saraksta objektā.
     return data
 
-# Definē funkciju 'query_vectordb', kas izmanto 'user_query' string mainīgo meklēšanas šķirklim.
-def query_vectordb():
+# Izveido funkciju 'query_sqldb' ar 1 ievadu 'req_func', kas pieņem string mainīgo, ko izmantot kā meklēšanas škirkli.
+def query_sqldb():
     
-    # Izveido mainīgo 'results' ar kolecijas 'query' funkciju lai meklētu datubāzē.
-    results = collection.query(
-        
-        # 'query' funkcijai tiek dots meklēšanas škirklis. 
-        query_texts=[user_query],
-        
-        # 'query' funkcijai tiek dots vajadzīgais rezultātu daudzums, kas vistuvāk atbilst šķirklim. 
-        n_results=1
-    )
-
-    # Izveido jaunu vārdnīcu ar izvada id, dokumentu un avotu
-    output = {'docs':results['documents'][0][0],'id':results['ids'][0][0],'source':results['metadatas'][0][0]['source']}
+    # Izveido 'conn' mainīgo ar SQLite3 savienojumu failam 'sql.db'.
+    conn = connect('data/sql.db')
     
-    # Pievieno izveidoto vārdnīcu rezultātiem.
-    query_results.append(output)
-
-# Izveido jaunu kolekciju 'collection' objektā.
-collection = create_collection('first.csv')
+    # Izveido 'cursor' mainīgo, ar kura palīdzību tiks pievienoti dati .db failam.
+    cursor = conn.cursor()
+    
+    # Izvēlās 0 objektus no 'main_table' darba virsmas lai 'cursor' objektam būtu pieejams 'cursor.description' mainīgais.
+    cursor.execute("SELECT * FROM main_table LIMIT 0")
+    
+    # Iesāk SQL komandu 'query' string mainīgajā.
+    query = "SELECT * FROM main_table WHERE "
+    
+    # Atrod visu kolonnu galvenes 'main_table' darba virsmā un saglabā tās.
+    header = [description[0] for description in cursor.description]
+    
+    # Izveido LIKE nosacījumu katrai kolonnai.
+    conditions = ["{} LIKE ?".format(column) for column in header]
+    
+    # Savieno galvenes ar OR nosacījumu, lai katra kolonna ir meklējama.
+    query += " OR ".join(conditions)
+    
+    # Izsauc SQL komandu lai izvēlētos visus attiecīgos rezultātus mainīgajam 'user_query' visās kolonnās.
+    cursor.execute(query, ('%' + user_query + '%',) * len(header))
+    
+    # Atrod vienu izvēlēto rezultātu.
+    output = cursor.fetchone()
+    
+    # Izmantojot 'close' funkciju, .db fails tiek aizvērts.
+    conn.close()
+    
+    # Ja meklēšanā tika atrasts rezultāts, tad tas tiek izvadīts vārdnīcā.
+    if output:
+        query_results.append({'id':f'{output[0]}','docs':f'{output[1]}','source':f'{output[2]}'})
+    
+    # Ja meklēšanā netika atrasts rezultāts, tad vārdnīcā tiek izvadīti 'empty' string mainīgie.
+    else:
+        query_results.append({'id':'empty','docs':'empty','source':'empty'})
 
 # Izsauc un saglabā kolekcijas meklēšanas pieprasījuma laika rezultātus.
-exported_data = measure(query_vectordb, times_repeated, data)
+exported_data = measure(query_sqldb, times_repeated, data)
 save(exported_data)

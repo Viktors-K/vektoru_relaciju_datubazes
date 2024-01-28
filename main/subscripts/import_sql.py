@@ -1,6 +1,3 @@
-# Importē 'csv' bibleotēkas 'reader' objektu, kas ļauj lasīt .csv tipa failus.
-from csv import reader
-
 # Importē 'sqlite3' bibleotēkas 'connect' funkciju, kas ļauj savienoties ar .db failu.
 from sqlite3 import connect
 

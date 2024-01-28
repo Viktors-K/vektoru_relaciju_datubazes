@@ -33,7 +33,7 @@ def save(info):
     print(f"Data has been saved to {file_path}")
 
 # Definē funkciju 'start_results', kas pievieno datiem sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
-def start_results(repeated,user_query):
+def start_results(repeated, user_query, mode):
     
     # Definē 'data' sarakstu, ar sākuma datiem un formatēšanu.
     data = [
@@ -46,10 +46,14 @@ def start_results(repeated,user_query):
     else:
         data.append([datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,subscripts.version.py_version])
     
-    # Pieraksta ievadīto meklēšanas škirkli.
-    data.append(["Ievada skirklis"])
-    data.append([user_query])
-    data.append(["Atkartojuma nr.p.k.", "Reizinatajs", "Laiks (ms)", "Izvads"])
+    # Pieraksta ievadīto meklēšanas škirkli un datubāzes veidu.
+    if mode == 'vector':
+        data.append(["Ievada skirklis", "Datubāzes veids"])
+        data.append([user_query, 'Vektordatubāze'])
+    else:
+        data.append(["Ievada skirklis", "Datubāzes veids"])
+        data.append([user_query, 'Relāciju datubāze'])
+    data.append(["Atkartojuma nr.p.k.", "Laiks (ms)", "Izvada ID", "Izvada Docs", "Izvada source"])
     
     # Izvada pabeigto sarakstu 'data'.
     return data
