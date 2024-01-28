@@ -11,8 +11,10 @@ from datetime import datetime
 
 # Izveido funkciju 'save' ar 2 ievadiem, 'timestamp', kas pieņem string mainīgo laika posma saglabāšanai, kā arī 'info', kas pieņem sarakstu .csv faila izveidei un saglabāšanai.
 def save(info):
+    
     # Izmantojot 'datetime' bibleotēku izveido string mainīgo, kurā saglabāts šobrīdējais datums un laiks faila nosaukumam. 
     current_timestamp = datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
+    
     # Izveido faila nosaukuma mainīgo ar ievadīto datumu un laiku.
     file_name =  (f"{current_timestamp}.csv")
 
@@ -30,23 +32,26 @@ def save(info):
     # Izdrukā konsolē paziņojumu par saglabātajiem rezultātiem un kur tie ir saglabāti.
     print(f"Data has been saved to {file_path}")
 
-###
+# Definē funkciju 'start_results', kas pievieno datiem sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
 def start_results(repeated,user_query):
     
     # Definē 'data' sarakstu, ar sākuma datiem un formatēšanu.
     data = [
         # Ievada šobrīdējo datumu, laiku un saglabā 'repeated' mainīgo.
         ["Datums","Laiks", "Atkartotas reizes", "Python versija"]]
+    
     # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
     if __name__ == "__main__":
         data.append([datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,version.py_version])
     else:
         data.append([datetime.now().strftime('%d-%m-%Y'),datetime.now().strftime('%H:%M:%S'),repeated,subscripts.version.py_version])
+    
     # Pieraksta ievadīto meklēšanas škirkli.
     data.append(["Ievada skirklis"])
     data.append([user_query])
     data.append(["Atkartojuma nr.p.k.", "Reizinatajs", "Laiks (ms)", "Izvads"])
-    ###
+    
+    # Izvada pabeigto sarakstu 'data'.
     return data
 
 # Definē funkciju 'main', kas izpilda galvenās funkcijas šajā zemā līmeņa skriptā.
