@@ -1,10 +1,6 @@
 # Importē 'timeit' bibleotēkas 'timeit' funkciju, kas ļauj izmērīt vajadzīgo laiku funkcijas izpildei.
 from timeit import timeit 
 
-# Importē 'datetime' bibleotēkas 'datetime' funkcijas, kas ļauj saglabāt šobrīdējo laiku un to formatēt.
-from datetime import datetime
-
-
 # Izveido funkciju 'measure' ar 3 ievadiem, 'req_func', kas pieņem funkciju, ko mērīt, 'repeated', kas pieņem skaitli, kurš nosaka cik reizes atkārtot mērījumus un 'data', kas pieņem iesāktu sarakstu lai tam var pievienot datus.
 def measure(req_func,repeated, data):
     

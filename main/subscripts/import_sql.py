@@ -14,7 +14,7 @@ from import_data import import_data
 def create_db_from_csv(csv_file, db_file):
     
     # Izsauc  funkciju 'import_data' un ievada tās izvadu sarakstā 'csv_data'.
-    csv_data = import_data(csv_file)
+    csv_data = import_data(csv_file, 'relational')
 
     # Izveido 'conn' mainīgo ar SQLite3 savienojumu failam 'db_file'.
     conn = connect(db_file)

@@ -5,7 +5,7 @@ from os import path
 from csv import reader
 
 # Definē funkciju 'import_data' ar vienu ievadu, 'db_file_name', kas pieņem string mainīgo vajadzīgā faila nosaukumam.
-def import_data(db_file_name):
+def import_data(db_file_name, mode):
     
     # Izveido sākuma datu faila lokācijas mainīgo 'db_file_path'.
     db_file_path = path.join(path.dirname(__file__), '..', 'data', db_file_name)
@@ -27,7 +27,10 @@ def import_data(db_file_name):
             db_data.append(row)
 
     # Izvada nolasīto informāciju no .csv faila saraksta objektā.
-    return db_data
+    if mode == 'vector':
+        return db_data
+    else:
+        return header, db_data
 
 # Definē funkciju 'main', kas izpilda galvenās funkcijas šajā zemā līmeņa skriptā.
 def main():
