@@ -13,9 +13,6 @@ times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
 # Izveido mainīgo 'user_query', kas iedod ievada iespēju lietotājam lai iestatīt meklēšanas šķirkli.
 user_query = input("Query:")
 
-# Izveido tukšu sarakstu 'query_results' kurā tiks pievienoti rezultāti no katras meklēšanas funkcijas izsaukšanas.
-query_results = []
-
 # Izveido jaunu sarakstu 'data' ar sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
 data = start_results(times_repeated,user_query)
 
