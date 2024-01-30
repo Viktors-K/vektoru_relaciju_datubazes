@@ -1,0 +1,18 @@
+Datums,Laiks,Atkartotas reizes,Python versija
+30-01-2024,22:12:40,10,3.10.11
+Ievada skirklis,Datubāzes veids
+Trento sods MI ChatGPT Itālija,Vektordatubāze
+Atkartojuma nr.p.k.,Laiks (ms),Izvada ID,Izvada tituls,Izvada autors
+1,20.5974,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+2,20.1375,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+3,20.0378,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+4,20.0109,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+5,20.3705,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+6,20.1866,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+7,20.0455,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+8,15.7614,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+9,15.6681,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+10,17.3796,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+
+Kopejais funkciju laiks (ms),Videjais funkciju laiks (ms)
+190.19530000000003,19.01953

@@ -65,12 +65,8 @@ def query_vectordb():
         # 'query' funkcijai tiek dots vajadzīgais rezultātu daudzums, kas vistuvāk atbilst šķirklim. 
         n_results=1
     )
-    print(results)
     
     # Izveido jaunu vārdnīcu ar izvada id, dokumentu un avotu
-    #output = {'docs':results['documents'][0][0],'id':results['ids'][0][0],'source':results['metadatas'][0][0]['source']}
-    #input_string.split('§')
-    print(f"Result Title: {results['documents'][0][0].split('§')[0]}")
     output = {'title':results['documents'][0][0].split('§')[0],'docs':results['documents'][0][0].split('§')[1],'id':results['ids'][0][0],'author':results['metadatas'][0][0]['author'],'date':results['metadatas'][0][0]['date']}
     # Pievieno izveidoto vārdnīcu rezultātiem.
     query_results.append(output)
