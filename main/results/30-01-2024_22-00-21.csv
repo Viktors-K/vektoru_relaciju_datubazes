@@ -1,0 +1,18 @@
+Datums,Laiks,Atkartotas reizes,Python versija
+30-01-2024,22:00:21,10,3.10.11
+Ievada skirklis,Datubāzes veids
+Trento,Relāciju datubāze
+Atkartojuma nr.p.k.,Laiks (ms),Izvada ID,Izvada tituls,Izvada autors
+1,0.5562,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+2,0.4096,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+3,0.4058,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+4,0.402,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+5,0.391,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+6,0.4927,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+7,0.5077,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+8,0.3981,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+9,0.3904,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+10,0.4302,5,Itālijas pilsēta Trento tiek pie 50 000 eiro soda par mākslīgā intelekta ļaunprātīgu izmantošanu,Keitija Krastiņa
+
+Kopejais funkciju laiks (ms),Videjais funkciju laiks (ms)
+4.3837,0.43837

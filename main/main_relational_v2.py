@@ -38,9 +38,8 @@ def measure(req_func,repeated, data):
 
         # Izveido jaunu mainīgo 'time_taken_ms', kas reizina mainīgo 'time_taken' 1000 reizes lai iegūtu rezultātu milisekundēs un to noapaļo līdz 5-1=4 skaitļiem aiz komata.
         time_taken_ms = round(time_taken*1000, 5)
-        print(query_results)
         # Pievieno 'data' sarakstam atkārtojuma nr.p.k., attiecīgo reizinātāju un cik milisekundes funkcija aizņēma.
-        data.append([i+1,time_taken_ms,query_results[i]['id'],query_results[i]['docs'],query_results[i]['author']])
+        data.append([i+1,time_taken_ms,query_results[i]['id'],query_results[i]['title'],query_results[i]['author']])
 
         # Pēc katras funkcijas nomērīšanas pievieno aizņemto laiku 'func_total_time_ms' mainīgajam lai saglabātu cik laika visas funkcijas atkārtošanas reizes aizņēma.
         func_total_time_ms = func_total_time_ms + time_taken_ms
