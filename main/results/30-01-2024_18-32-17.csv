@@ -1,0 +1,23 @@
+Datums,Laiks,Atkartotas reizes,Python versija
+30-01-2024,18:32:15,15,3.10.11
+Ievada skirklis,Datubāzes veids
+Jappa,Vektordatubāze
+Atkartojuma nr.p.k.,Laiks (ms),Izvada ID,Izvada Docs,Izvada source
+1,15.7999,id74,Jonas Daniels,Athens
+2,15.077,id74,Jonas Daniels,Athens
+3,15.0358,id74,Jonas Daniels,Athens
+4,14.4662,id74,Jonas Daniels,Athens
+5,15.1817,id74,Jonas Daniels,Athens
+6,14.7256,id74,Jonas Daniels,Athens
+7,14.8656,id74,Jonas Daniels,Athens
+8,14.9275,id74,Jonas Daniels,Athens
+9,15.051,id74,Jonas Daniels,Athens
+10,14.7175,id74,Jonas Daniels,Athens
+11,14.9415,id74,Jonas Daniels,Athens
+12,14.9544,id74,Jonas Daniels,Athens
+13,16.3504,id74,Jonas Daniels,Athens
+14,14.8256,id74,Jonas Daniels,Athens
+15,14.964,id74,Jonas Daniels,Athens
+
+Kopejais funkciju laiks (ms),Videjais funkciju laiks (ms)
+225.88369999999998,15.05891

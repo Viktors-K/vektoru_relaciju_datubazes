@@ -14,7 +14,7 @@ def import_data(db_file_name, mode):
     db_data = []
 
     # Atver un nolasa sākuma datu .csv failu.
-    with open(db_file_path) as db_csv:
+    with open(db_file_path, encoding='utf-8') as db_csv:
         
         # Izveido .csv faila lasītāja objektu
         csv_reader = reader(db_csv)
@@ -35,7 +35,7 @@ def import_data(db_file_name, mode):
 # Definē funkciju 'main', kas izpilda galvenās funkcijas šajā zemā līmeņa skriptā.
 def main():
     # Izdrukā importētos datus no 'first.csv'
-    print(import_data('first.csv'))
+    print(import_data('first.csv', 'vector'))
 
 # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
 if __name__ == "__main__":

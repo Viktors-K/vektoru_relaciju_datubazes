@@ -1,0 +1,18 @@
+Datums,Laiks,Atkartotas reizes,Python versija
+30-01-2024,18:48:23,10,3.10.11
+Ievada skirklis,Datubāzes veids
+Grover,Relāciju datubāze
+Atkartojuma nr.p.k.,Laiks (ms),Izvada ID,Izvada Docs,Izvada source
+1,0.4946,id70,Grover Nielsen,Athens
+2,0.3277,id70,Grover Nielsen,Athens
+3,0.3364,id70,Grover Nielsen,Athens
+4,0.3471,id70,Grover Nielsen,Athens
+5,0.3244,id70,Grover Nielsen,Athens
+6,0.3147,id70,Grover Nielsen,Athens
+7,0.3083,id70,Grover Nielsen,Athens
+8,0.3096,id70,Grover Nielsen,Athens
+9,0.3149,id70,Grover Nielsen,Athens
+10,0.3176,id70,Grover Nielsen,Athens
+
+Kopejais funkciju laiks (ms),Videjais funkciju laiks (ms)
+3.3953,0.33953

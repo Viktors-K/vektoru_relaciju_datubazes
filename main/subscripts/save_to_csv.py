@@ -53,7 +53,7 @@ def start_results(repeated, user_query, mode):
     else:
         data.append(["Ievada skirklis", "Datubāzes veids"])
         data.append([user_query, 'Relāciju datubāze'])
-    data.append(["Atkartojuma nr.p.k.", "Laiks (ms)", "Izvada ID", "Izvada Docs", "Izvada source"])
+    data.append(["Atkartojuma nr.p.k.", "Laiks (ms)", "Izvada ID", "Izvada tituls", "Izvada autors"])
     
     # Izvada pabeigto sarakstu 'data'.
     return data
@@ -61,7 +61,7 @@ def start_results(repeated, user_query, mode):
 # Definē funkciju 'main', kas izpilda galvenās funkcijas šajā zemā līmeņa skriptā.
 def main():
     # Izveido rezultātu saraksta iesākumu
-    data = start_results(10,'test_input')
+    data = start_results(10,'test_input','vector')
     # Saglabā iesākumu jaunā failā.
     save(data)
 
