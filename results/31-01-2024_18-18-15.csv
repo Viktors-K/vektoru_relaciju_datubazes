@@ -1,0 +1,18 @@
+Datums,Laiks,Atkartotas reizes,Python versija
+31-01-2024,18:18:15,10,3.10.11
+Ievada skirklis,Datubāzes veids
+Microsoft,Relāciju datubāze
+Atkartojuma nr.p.k.,Laiks (ms),Izvada ID,Izvada tituls,Izvada autors
+1,0.5454,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+2,0.3758,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+3,0.3757,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+4,0.3719,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+5,0.3971,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+6,0.3797,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+7,0.3709,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+8,0.3618,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+9,0.3607,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+10,0.3664,11,“WhatsApp” drīzumā ļaus nosūtīt ziņas citām saziņas lietotnēm,Keitija Krastiņa
+
+Kopejais funkciju laiks (ms),Videjais funkciju laiks (ms)
+3.9054000000000006,0.39054

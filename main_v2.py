@@ -63,7 +63,7 @@ def query_vectordb():
         query_texts=[user_query],
         
         # 'query' funkcijai tiek dots vajadzīgais rezultātu daudzums, kas vistuvāk atbilst šķirklim. 
-        n_results=1
+        n_results=3
     )
     
     # Izveido jaunu vārdnīcu ar izvada id, dokumentu un avotu
