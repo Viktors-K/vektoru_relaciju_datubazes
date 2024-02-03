@@ -26,7 +26,7 @@ def import_data(db_file_name, mode):
         for row in csv_reader:
             db_data.append(row)
 
-    # Izvada nolasīto informāciju no .csv faila saraksta objektā.
+    # Izvada nolasīto informāciju no .csv faila saraksta objektā vektoru datubāzei, citādi izvada gan galveni, gan informāciju.
     if mode == 'vector':
         return db_data
     else:

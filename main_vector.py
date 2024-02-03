@@ -11,7 +11,7 @@ from subscripts.chromadb_second import create_collection
 times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
 
 # Izveido mainīgo 'user_query', kas iedod ievada iespēju lietotājam lai iestatīt meklēšanas šķirkli.
-user_query = input("Query:")
+user_query = input("Meklēšanas šķirklis:")
 
 # Izveido jaunu sarakstu 'data' ar sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
 data = start_results(times_repeated,user_query, 'vector')
@@ -68,6 +68,7 @@ def query_vectordb():
     
     # Izveido jaunu vārdnīcu ar izvada id, dokumentu un avotu
     output = {'title':results['documents'][0][0].split('§')[0],'docs':results['documents'][0][0].split('§')[1],'id':results['ids'][0][0],'author':results['metadatas'][0][0]['author'],'date':results['metadatas'][0][0]['date']}
+    
     # Pievieno izveidoto vārdnīcu rezultātiem.
     query_results.append(output)
 

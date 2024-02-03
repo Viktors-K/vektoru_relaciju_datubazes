@@ -16,7 +16,7 @@ create_db_from_csv('first.csv', 'data/sql.db')
 times_repeated = int(input("Cik reizes veikt atkārtotu laika mērīšanu: "))
 
 # Izveido mainīgo 'user_query', kas iedod ievada iespēju lietotājam lai iestatīt meklēšanas šķirkli.
-user_query = (str(input("Query:")))
+user_query = input("Meklēšanas šķirklis:")
 
 # Izveido tukšu sarakstu 'query_results' kurā tiks pievienoti rezultāti no katras meklēšanas funkcijas izsaukšanas.
 query_results = []
@@ -101,6 +101,6 @@ def query_sqldb():
     # Izmantojot 'close' funkciju, .db fails tiek aizvērts.
     conn.close()
 
-# Izsauc un saglabā kolekcijas meklēšanas pieprasījuma laika rezultātus.
+# Izsauc un saglabā meklēšanas pieprasījuma laika rezultātus.
 exported_data = measure(query_sqldb, times_repeated, data)
 save(exported_data)

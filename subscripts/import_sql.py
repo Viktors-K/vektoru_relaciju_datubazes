@@ -11,7 +11,11 @@ def create_db_from_csv(csv_file, db_file):
     
     # Izsauc  funkciju 'import_data' un ievada tās izvadu sarakstā 'csv_data'.
     imported_data = import_data(csv_file, 'relational')
+    
+    # Iestata 'header' mainīgo uz pirmo mainīgo sarakstā, kas ir galvene.
     header = imported_data[0]
+    
+    # Iestata 'csv_data' mainīgo uz otro mainīgo sarakstā, kas ir pārējie dati.
     csv_data = imported_data[1]
     
     # Izveido 'conn' mainīgo ar SQLite3 savienojumu failam 'db_file'.
@@ -40,8 +44,10 @@ def main():
 
 # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
 if __name__ == "__main__":
+    
     # Importē 'import_data' faila 'import_data' funkciju, kas importē datus no dota .csv faila nosaukuma un izvada tos sarakstā.
     from import_data import import_data
+    
     main()
 else:
     # Importē 'import_data' faila 'import_data' funkciju, kas importē datus no dota .csv faila nosaukuma un izvada tos sarakstā.

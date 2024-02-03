@@ -7,7 +7,7 @@ def create_collection(db_file_name):
     # Izveido 'imported_data' objektu, kurā ievadīti visi dati no 'db_file_name' faila.
     imported_data = import_data(db_file_name, 'vector')
     
-    # Izveido 3 tukšus sarakstus ChromaDB formatēšanai
+    # Izveido 4 tukšus sarakstus ChromaDB formatēšanai
     imported_ids = []
     imported_docs = []
     imported_dates = []
@@ -23,13 +23,14 @@ def create_collection(db_file_name):
         imported_dates.append(row[2])
         imported_authors.append(row[3])
         
-    # Iterate over both lists simultaneously
+    # Katram datumam un autoram, kas tika importēts, tiek iziets cauri
     for date, author in zip(imported_dates, imported_authors):
-        # Create a dictionary for each pair of values
+        
+        # Izveido vārdnīcu 'metadata', kurā pievieno autoru un datumu.
         metadata = {'date': date, 'author': author}
-        # Append the dictionary to the imported_metadata list
+        
+        # Pievieno izveidoto vārdnīcu 'imported_metadata' sarakstam.
         imported_metadata.append(metadata)
-
 
     # Izveido 'chroma_client' objektu.
     chroma_client = Client()
@@ -39,9 +40,9 @@ def create_collection(db_file_name):
 
     # Ar collection.add funkciju tiek pievienota informācija kolekcijai.
     collection.add(
-        # Tiek definēti divi dokumenti.
+        # Tiek definēti dokumenti ar importētajiem datiem.
         documents=imported_docs,
-        # Tiek definēti papildus metadati šiem dokumentiem, šajā gadījumā 'source' informācija.
+        # Tiek definēti papildus metadati šiem dokumentiem, šajā gadījumā 'date' un 'author' informācija.
         metadatas=imported_metadata,
         # Tiek definēti dokumentu ID.
         ids=imported_ids

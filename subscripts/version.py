@@ -6,6 +6,7 @@ py_version = f"{version_info.major}.{version_info.minor}.{version_info.micro}"
 
 # Definē funkciju 'main', kas izpilda galvenās funkcijas šajā zemā līmeņa skriptā.
 def main():
+    
     # Izdrukā Python versijas informāciju.
     print("Version info.")
     print(py_version)

@@ -45,14 +45,18 @@ def query_sqldb():
         else:
             query_results.append({'id': 'empty', 'title': 'empty', 'date': 'empty', 'author': 'empty', 'docs': 'empty'}) 
 
+# Definē funkciju 'main', kas izpilda galvenās funkcijas šajā zemā līmeņa skriptā.
 def main():
     query_sqldb()
     print(query_results)
 
+# Ja atvērts tieši, šis skripts izpildīs šo un main() funckiju.
 if __name__ == "__main__":
     user_query = input("Query:")
     query_results = []
     main()
+
+# Ja atvērts netieši, šis skripts izpildīs šo definīciju. 
 else:
     user_query = ""
     query_results = []

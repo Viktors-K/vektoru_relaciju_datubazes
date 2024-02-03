@@ -8,7 +8,6 @@ from os import path
 # Importē 'datetime' bibleotēkas 'datetime' funkcijas, kas ļauj saglabāt šobrīdējo laiku un to formatēt.
 from datetime import datetime
 
-
 # Izveido funkciju 'save' ar 2 ievadiem, 'timestamp', kas pieņem string mainīgo laika posma saglabāšanai, kā arī 'info', kas pieņem sarakstu .csv faila izveidei un saglabāšanai.
 def save(info):
     
@@ -30,7 +29,7 @@ def save(info):
         writer_instance.writerows(info)
 
     # Izdrukā konsolē paziņojumu par saglabātajiem rezultātiem un kur tie ir saglabāti.
-    print(f"Data has been saved to {file_path}")
+    print(f"Dati tika saglabāti šajā lokācijā: {file_path}")
 
 # Definē funkciju 'start_results', kas pievieno datiem sākuma informāciju kā laiku, versiju un galveni vieglākai datu nolasīšanai.
 def start_results(repeated, user_query, mode):
@@ -38,7 +37,7 @@ def start_results(repeated, user_query, mode):
     # Definē 'data' sarakstu, ar sākuma datiem un formatēšanu.
     data = [
         # Ievada šobrīdējo datumu, laiku un saglabā 'repeated' mainīgo.
-        ["Datums","Laiks", "Atkartotas reizes", "Python versija"]]
+        ["Datums","Laiks", "Atkārtotas reizes", "Python versija"]]
     
     # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
     if __name__ == "__main__":
@@ -48,30 +47,35 @@ def start_results(repeated, user_query, mode):
     
     # Pieraksta ievadīto meklēšanas škirkli un datubāzes veidu.
     if mode == 'vector':
-        data.append(["Ievada skirklis", "Datubāzes veids"])
-        data.append([user_query, 'Vektordatubāze'])
+        data.append(["Ievada šķirklis", "Datubāzes veids"])
+        data.append([user_query, 'Vektoru datubāze'])
     else:
-        data.append(["Ievada skirklis", "Datubāzes veids"])
+        data.append(["Ievada šķirklis", "Datubāzes veids"])
         data.append([user_query, 'Relāciju datubāze'])
-    data.append(["Atkartojuma nr.p.k.", "Laiks (ms)", "Izvada ID", "Izvada tituls", "Izvada autors"])
+    data.append(["Atkārtojuma nr.p.k.", "Laiks (ms)", "Izvada ID", "Izvada nosaukums", "Izvada autors"])
     
     # Izvada pabeigto sarakstu 'data'.
     return data
 
 # Definē funkciju 'main', kas izpilda galvenās funkcijas šajā zemā līmeņa skriptā.
 def main():
+    
     # Izveido rezultātu saraksta iesākumu
     data = start_results(10,'test_input','vector')
+    
     # Saglabā iesākumu jaunā failā.
     save(data)
 
 # Ja atvērts tieši, šis skripts izpildīs main() funckiju.
 if __name__ == "__main__":
+    
     # Importē 'version.py' failu, kas izveido mainīgo py_version ar šobrīdējo Python versiju.
     import version
+    
     main()
     
 # Ja atvērts netieši, šis skripts importēs ārēji 'version' faila mainīgo.
 else:
+    
     # Importē 'version.py' failu, kas izveido mainīgo py_version ar šobrīdējo Python versiju.
     import subscripts.version
