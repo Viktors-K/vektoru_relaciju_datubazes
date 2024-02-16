@@ -1,5 +1,5 @@
 
-# VEKTORDATUBĀZES UN KĀ TĀS PAĀTRINA MEKLĒŠANU DATU KOPĀS: Praktiskā daļa
+# VEKTORU DATUBĀZES UN KĀ TĀS PAĀTRINA MEKLĒŠANU DATU KOPĀS: Praktiskā daļa
 
 Zinātniskās pētniecības darbs inženierzinātņu un tehnoloģiju nozarē.
 
